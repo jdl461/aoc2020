@@ -1,0 +1,2 @@
+(executable
+ (name part1) (libraries core))
