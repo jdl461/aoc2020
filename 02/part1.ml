@@ -27,4 +27,4 @@ match result with
   | Error _ -> false
 )
 
-let () = Stdio.print_endline (Int.to_string (List.length (List.filter matches ~f:(fun m -> not m))))
+let () = Stdio.print_endline (Int.to_string (List.length (List.filter matches ~f:(fun m -> m))))
