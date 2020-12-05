@@ -30,8 +30,8 @@ let passports = [
 ""
 ]
 
-(* let input = In_channel.read_lines "input.txt" *)
-let input = passports
+let input = In_channel.read_lines "input.txt"
+(* let input = passports *)
 
 let add_to_passport data passport = 
   (String.substr_replace_all data ~pattern:" " ~with_:";") ^ ";" ^ passport
@@ -79,7 +79,7 @@ let is_valid (key, value) =
   | "hcl" -> Re2.matches (Re2.create_exn "#[0-9|a-f]{6}") value
   | "hgt" -> valid_height value
   | "iyr" -> let intval = Int.of_string value in (intval >= 2010 && intval <= 2020)
-  | "pid" -> Re2.matches (Re2.create_exn "\\d{9}") value
+  | "pid" -> (String.length value) = 9 && Re2.matches (Re2.create_exn "\\d{9}") value
   | _  -> true
 
 let is_present (records : (string * string) list) : bool = 

@@ -19,23 +19,23 @@ let to_binary data =
   String.map data ~f:(replace) in
   "0b" ^ digits
 
-let rec is_seat prev lst =
+let rec find_seat prev lst =
   match lst with
   | [] -> 0
   | p :: _ when p = prev + 2 -> prev + 1
-  | h :: t -> is_seat h t
+  | h :: t -> find_seat h t
 
 let ids = List.map input ~f:(
   fun d -> 
     let row_input = String.slice d 0 7 in 
-    let row = (to_binary (row_input)) |> Int.of_string in
+    let row = row_input |> to_binary |> Int.of_string in
     let seat_input = String.slice d 7 10 in
-    let seat = (to_binary (seat_input)) |> Int.of_string in
+    let seat = seat_input |> to_binary |> Int.of_string in
     row * 8 + seat
 )
 
 let sorted = List.sort ids ~compare:Int.compare
 
-let seat = is_seat (List.hd_exn sorted) (List.tl_exn sorted)
+let seat = find_seat (List.hd_exn sorted) (List.tl_exn sorted)
 
 let () = Stdio.printf "%d\n" seat
