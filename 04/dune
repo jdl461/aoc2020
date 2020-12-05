@@ -1,3 +1,3 @@
 (executables
- (names part1)
- (libraries base core))
+ (names part1 part2)
+ (libraries base core re2))
