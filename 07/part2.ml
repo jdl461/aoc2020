@@ -1,31 +1,12 @@
 open Core
 
-let ex =
-  [
-    "shiny gold bags contain 2 dark red bags.";
-    "dark red bags contain 2 dark orange bags.";
-    "dark orange bags contain 2 dark yellow bags.";
-    "dark yellow bags contain 2 dark green bags.";
-    "dark green bags contain 2 dark blue bags.";
-    "dark blue bags contain 2 dark violet bags.";
-    "dark violet bags contain no other bags.";
-  ]
-
 let re = Re2.create_exn "^(.+) bags contain (.+)+\\.+$"
 
 let re2 = Re2.create_exn "(\\d) (.+) (bag|bags)"
 
 let input = In_channel.read_lines "input.txt"
 
-(* let input = ex *)
-
 let bag_rules = List.map input ~f:(Re2.get_matches_exn re)
-
-let print_contents container contents =
-  Stdio.print_endline
-    ( "container: " ^ container ^ ", contents: "
-    ^ String.concat ~sep:", "
-        (List.map contents ~f:(fun (s, c) -> s ^ " x " ^ Int.to_string c)) )
 
 let bag_contents contents =
   List.map contents ~f:(fun rule ->
@@ -57,17 +38,6 @@ let tree =
           in
           (* let () = print_contents container contents in *)
           List.Assoc.add ~equal:String.equal acc container contents)
-
-let t_to_string (s, c) = s ^ " x " ^ Int.to_string c
-
-(* let () =
-  List.iter tree ~f:(fun (s, c) ->
-      Stdio.printf "%s: %s\n" s
-        (String.concat ~sep:", " (List.map c ~f:t_to_string))) *)
-
-let find_in_t bag t =
-  let contents = List.Assoc.find ~equal:String.equal t bag in
-  match contents with None -> [] | Some x -> x
 
 let rec count_bags bags t =
   match bags with
