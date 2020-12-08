@@ -82,13 +82,6 @@ let rec count_bags bags t =
       in
       List.fold counts ~init:0 ~f:( + )
 
-(* let children = List.Assoc.find ~equal:String.equal t bag in
-   match children with
-   | None -> 0
-   | Some lst ->
-       List.fold lst ~init:count ~f:(fun acc (b, c) ->
-           acc + (acc * count_bag (b, c) t)) *)
-
 let result =
   count_bags (List.Assoc.find_exn ~equal:String.equal tree "shiny gold") tree
 
