@@ -47,7 +47,7 @@ B /Users/lycke/.opam/4.11.1/lib/time_now
 B /Users/lycke/.opam/4.11.1/lib/timezone
 B /Users/lycke/.opam/4.11.1/lib/typerep
 B /Users/lycke/.opam/4.11.1/lib/variantslib
-B _build/default/.part1.eobjs/byte
+B ../_build/default/02/.part1.eobjs/byte
 S /Users/lycke/.opam/4.11.1/lib/base
 S /Users/lycke/.opam/4.11.1/lib/base/base_internalhash_types
 S /Users/lycke/.opam/4.11.1/lib/base/caml
